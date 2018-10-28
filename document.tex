@@ -1,5 +1,6 @@
-\documentclass[14pt]{article}
+\documentclass[12pt]{article}
 \usepackage{graphicx}
+\usepackage{ltablex}
 
 \title{Dungeon Crawler CO3 Computer Science Programming Project}
 \author{William Riddell}
@@ -12,7 +13,7 @@
 	\pagenumbering{arabic}
 	\tableofcontents
 	
-	\section{Analysis of the problem}
+\section{Analysis of the problem}
 	
 	\section{Problem Identification}
 	
@@ -25,23 +26,23 @@ There will be a small menu in the very middle bottom which will give the player 
 
 There will also be text which appears. This text describes the damage dealt or taken. This text will be located just right of the very middle of the screen and will keep the player up to date on what is happening in the battle, allowing them to make better decisions when playing through the game. and will be there to tell the user what is happening in the current fight so they can make the correct decisions. It is also there to make sure the user does not miss any important information which may lead to them losing the game. 
 
-There will be a small screen just to the left of the bottom menu, which will show the current statistics on the character. This will show the health of the player, their carry weight and then their currently equipped weapon. This will also show the currently equipped armour as well, showing what the player has a resistance too, and then the amount of damage it will deal to each type of monster.  
+There will be a small screen just to the left of the bottom menu, which will show the current statistics on the character. This will show the health of the player, their carry weight and then their currently equipped weapon. This will also show the currently equipped armor as well, showing what the player has a resistance too, and then the amount of damage it will deal to each type of monster.  
 
-To the right of the bottom menu, there will be the inventory, this will include, for example provision, gold and other treasures, as well as items like a sword and armour, it will also have items like torches. Extending this there will be a finite number of spaces in the inventory, this limits the space which the player has, meaning that they have to prioritise what they want to carry.
+To the right of the bottom menu, there will be the inventory, this will include, for example provision, gold and other treasures, as well as items like a sword and armor, it will also have items like torches. Extending this there will be a finite number of spaces in the inventory, this limits the space which the player has, meaning that they have to prioritise what they want to carry.
 
-There will be a minimap in the top right which will give a localised view of the area surrounding the player, showing only where they have been, and if they click this it will show a full map, meaning they can plan their route out, or explore areas. 
+There will be a mini-map in the top right which will give a localised view of the area surrounding the player, showing only where they have been, and if they click this it will show a full map, meaning they can plan their route out, or explore areas. 
 
 If the player presses a certain button (Escape for example) it will open a main menu, pausing the game in the background and allowing the player to save, overwrite saves or quitting. Having this save feature will allow people to pick it up, and to then come back to it as the game, on the harder difficulties and on a bigger map will last for quite some time, meaning this would be a crucial feature.
 
 	\section{Computational Methods}
 
 		\subsection{Thinking Abstractly and Visually}
-I need to begin to think Abstractly and Visually, this is because it would be impossible to accurately simulate everything which would happen in the dungeon, and would also be impossible to code, this is because of my own limitations and ideas. This means that some ideas will be lost for a more simple reconstruction which achieves the same effect. This could be for example when battling monsters, the monsters will have a single simple attack, and then multipliers which will be added to the attack. This means that it simplifies the idea that if the monster was real then it would instead have an array of different attack styles which will all do different “damages”. Another example is that different attack styles would do different amounts of damage against different armour. This could be simplified with armour levels, as light armour like leather or chainmail would absorb less damage and would therefore have a lower armor level. This is a abstract of real life as if you take light armor it allows the person to have more maneuverability, but at the same it would take less damage against certain weapons. 
+I need to begin to think Abstractly and Visually, this is because it would be impossible to accurately simulate everything which would happen in the dungeon, and would also be impossible to code, this is because of my own limitations and ideas. This means that some ideas will be lost for a more simple reconstruction which achieves the same effect. This could be for example when battling monsters, the monsters will have a single simple attack, and then multipliers which will be added to the attack. This means that it simplifies the idea that if the monster was real then it would instead have an array of different attack styles which will all do different “damages”. Another example is that different attack styles would do different amounts of damage against different armor. This could be simplified with armor levels, as light armor like leather or chain-mail would absorb less damage and would therefore have a lower armor level. This is a abstract of real life as if you take light armor it allows the person to have more maneuverability, but at the same it would take less damage against certain weapons. 
 
 There are certain aspects of real life which I was not sure if I was going to include or not, this were aspects of life like eating and drinking. I was also thinking about including the idea that when you are damaged you deal less damage, as this would be similar to real life. After talking to my Stakeholders I have came to the final conclusion that eating and drinking would take too much effort to keep track of, and would take away from the core idea of the game. They would also think that the idea about decreasing the amount of damage that you do was a good idea at first, and then later Jimbo came back and said that it wouldn't actually be a good idea, so I don't think I will be including any of these aspects as it would be too close to real life and would take away from the main idea of the game, it would also feel unfair for the user to die in battles because of a strong hit by the enemy. 
 
 	
-		\subsection{Thikning Ahead}
+		\subsection{Thinking Ahead}
 	
 When coding the dungeon crawler I need to look at the inputs which are needed for the game. I think that I would need the mouse for the user to select what options they want and what action they would want the character to do. This would be the first input. I would also need the keyboard as this would allow the user to input the name and other information about their character. After this I would mainly use the mouse, and the keyboard would become unnecessary. 
 
@@ -104,7 +105,7 @@ I have found a game called the Legend of Grimrock. This is what it looks like:
 
 \includegraphics[width = 0.6\textwidth]{Grimlock_Image}
 
-As you can see, it has items in the bottom right, and characters in the top left. This is somewhat what I would like my game to looks like referencing the HUD, but the background is exactly what I would like it to look like, although the graphics would be in a pixel art style, and will be 2D. I would like enemies to appear in front of the player when the player enters that monsters square. I don't know whether I will indicate what is in the next tile at this point in time. Furthermore I would like the enemies to have an indicator for the Health and other statistics, to give the character information about what they are facing. This is contained in to top left with each Character, but I will only have one character which the player will play as. This means I think I will have a seperate menu section for the health and statistics which will be in the bottom left. 
+As you can see, it has items in the bottom right, and characters in the top left. This is somewhat what I would like my game to looks like referencing the HUD, but the background is exactly what I would like it to look like, although the graphics would be in a pixel art style, and will be 2D. I would like enemies to appear in front of the player when the player enters that monsters square. I don't know whether I will indicate what is in the next tile at this point in time. Furthermore I would like the enemies to have an indicator for the Health and other statistics, to give the character information about what they are facing. This is contained in to top left with each Character, but I will only have one character which the player will play as. This means I think I will have a separate menu section for the health and statistics which will be in the bottom left. 
 
 After talking to my stakeholders I should not indicate what is in the next rooms, but instead indicate where they can next go. This will keep the idea that everything is random until discovered and entered.
 
@@ -115,15 +116,15 @@ The inventory on the right will be exactly like that, but with an increased numb
 
 \includegraphics[width = 0.6\textwidth]{Pokemon_Image}
 
-The game above is Pokemon, I will be taking the combat system from this game. As you can see there is the Players pokemon in the foreground and then the enemy’s Pokemon in the background, and to the side of each pokemon there are statistics which are displayed to the player. This tells the name of the two pokemon battling, the level of the two pokemon and the health of the pokemon. Furthermore there is a menu at the bottom of the screen which displays text to the player and then options which they can select. 
+The game above is Pokemon, I will be taking the combat system from this game. As you can see there is the Players Pokemon in the foreground and then the enemy’s Pokemon in the background, and to the side of each Pokemon there are statistics which are displayed to the player. This tells the name of the two Pokemon battling, the level of the two Pokemon and the health of the Pokemon. Furthermore there is a menu at the bottom of the screen which displays text to the player and then options which they can select. 
 
-When you enter a battle with an enemy you decide what to do on your first turn. This could be to “Fight” and then you can select the attack which you will use. You could use something from you bag, this could be to increase the HP of the pokemon on the field. If your current pokemon is low, “KO” (This means it can’t be used) or too weak you can swap it out for another Pokemon. Finally, if you are going to lose this battle you can run, allowing you to safely move on. Pokemons combat is turn based.
+When you enter a battle with an enemy you decide what to do on your first turn. This could be to “Fight” and then you can select the attack which you will use. You could use something from you bag, this could be to increase the HP of the Pokemon on the field. If your current Pokemon is low, “KO” (This means it can’t be used) or too weak you can swap it out for another Pokemon. Finally, if you are going to lose this battle you can run, allowing you to safely move on. Pokemons combat is turn based.
 
-I would like to implement all of these features into my game. For the “Fight” button, you could select the style of attack to use, for example you could “Lunge” this, for example could be a high damage, but low accuracy attack, compared to a “Stab” where it could be very accurate, but low damage. I could further this with multipliers, for example a “Slash” attack is weaker on armoured opponents, yet stronger on less armoured enemies. This can further develop the depth of the game, as as you move on and spot the boss,you can prepare your character to deal with that Boss type, which is dictated from the multipliers. For example there could be an Undead Boss, which means you should try to find weapons and armour which is more adapt to dealing with undead characters, which could be a fire based attack, or the slash attack we talked about earlier.
+I would like to implement all of these features into my game. For the “Fight” button, you could select the style of attack to use, for example you could “Lunge” this, for example could be a high damage, but low accuracy attack, compared to a “Stab” where it could be very accurate, but low damage. I could further this with multipliers, for example a “Slash” attack is weaker on armored opponents, yet stronger on less armored enemies. This can further develop the depth of the game, as as you move on and spot the boss,you can prepare your character to deal with that Boss type, which is dictated from the multipliers. For example there could be an Undead Boss, which means you should try to find weapons and armor which is more adapt to dealing with undead characters, which could be a fire based attack, or the slash attack we talked about earlier.
 
 The player should have an option to use their turn by selecting an item their inventory. This could be switching weapons, or using some provisions to heal up their character if they are low on HP. Finally, you should be able to run away from the enemy, this means that you move to the room you were last in. This will be used to take a different path way if there is a strong monster in the way.
 	
-		\subsection{Stakeholder Questionaire}
+		\subsection{Stakeholder Questionnaire}
 
 This is the Questionnaire which I will be sending to my stakeholders. The answers to the questionnaire will be stated below.
 
@@ -148,7 +149,7 @@ This is the Questionnaire which I will be sending to my stakeholders. The answer
 		\begin{enumerate}
 		\item Yes
 			\begin{enumerate}
-				\item The carry weight integer should be the numebr of items a single character should hold
+				\item The carry weight integer should be the number of items a single character should hold
 				\item Some items should not be carried, for example arrows. 
 			\end{enumerate}
 		\item No
@@ -166,7 +167,7 @@ This is the Questionnaire which I will be sending to my stakeholders. The answer
 		\item No
 		\end{enumerate}
 				
-	\item{Should I add audio cues, for example when you reach a treasure room, there is a small jingle which playes?}
+	\item{Should I add audio cues, for example when you reach a treasure room, there is a small jingle which plays?}
 		\begin{enumerate}
 		\item Yes
 		\item No
@@ -188,10 +189,10 @@ This is the Questionnaire which I will be sending to my stakeholders. The answer
 		\end{enumerate}
 
 			
-	\item{Should I have a constant minimap in the main form, or should I have a map form which they can always keep open?}
+	\item{Should I have a constant mini-map in the main form, or should I have a map form which they can always keep open?}
 		\begin{enumerate}
 		\item You should have it in the Mini Map style
-		\item It should be contained in a seperate form
+		\item It should be contained in a separate form
 		\end{enumerate}
 			
 	\item{Please enter further ideas on the game.}
@@ -214,29 +215,30 @@ I have kept this questionnaire short, and specific. I believe this will be bette
 	\em{This response was originally in line with my own opinions, as this will keep the mystery when moving into another tile, and facing a random boss.}
 	
 	\item{Yes, I think the inventory should be a visual grid, here there is a limited amount of squares. \\}
-	\em{Peter gave the example of the game Runescape, the inventory looked like this:}
+	\em{Peter gave the example of the game Runescape, the inventory looked like this:\\}
 	\includegraphics[width = 0.4\textwidth]{RuneScape_Image}
+	\\
 	\em{This is the inventory which I will be going with, but I will have the spaces grow with the characters carry weight.}
 	
-	\item{I think there should not be a underlying score, and the win condition should only be if you have killed the final boss. I also think when you die, you die.}
-	\em{I dont think a underlying score would be good either, as this wouldn't be fair as longer games would yield a higher score, and would therefore be unfair.}
+	\item{I think there should not be a underlying score, and the win condition should only be if you have killed the final boss. I also think when you die, you die.\\}
+	\em{I don't think a underlying score would be good either, as this wouldn't be fair as longer games would yield a higher score, and would therefore be unfair.}
 	
-	\item{Yes, I think there should be music and ambiance}	
+	\item{Yes, I think there should be music and ambiance\\}	
 	\em{Making and finding music is hard, but I think I will be able to find some as I really want to have music in my game, as all of us want music in the game.}
 	
-	\item{Yes}
+	\item{Yes\\}
 	\em{I want to make my own jingle here, as I want it to be specific to the game.}
 	
-	\item{There should be a variety of different biomes, for examples barbaria, arabic / indian as well as the Egyption one.}
-	\em{I really like the idea of the Egyption and the indian biomes, these will both be contained in the final game if I have time.}
+	\item{There should be a variety of different biomes, for examples barbarian, Arabic / Indian as well as the Egyptian one.\\}
+	\em{I really like the idea of the Egyptian and the Indian biomes, these will both be contained in the final game if I have time.}
 	
-	\item{No, when the player first spawns there should be a certain amount of tiles which are allowed to see, and then the rest should only become visible when the player visits them}
+	\item{No, when the player first spawns there should be a certain amount of tiles which are allowed to see, and then the rest should only become visible when the player visits them \\}
 	\em{This will allow the user to get a strong start, and not get killed at the beginning of the game. A problem with this is that you may be spawned next to a treasure room, and they won't have the luck of finding one, as it would be displayed that they were spawned next to it.}
 	
-	\item{There should be a small mini map, and the a big main form. The main form will show you the whole size of the map, and the minimap only a small amount of the map}
+	\item{There should be a small mini map, and the a big main form. The main form will show you the whole size of the map, and the mini-map only a small amount of the map \\}
 	\em{I like this idea a lot but I don't see the need of it if you can just have the main map form open in another window.}
 	
-	\item{I think there should be a Shop Room, this is where the player can sell his Gold which he has earnt from killing monsters.}
+	\item{I think there should be a Shop Room, this is where the player can sell his Gold which he has earn't from killing monsters. \\}
 	\em{This is a very good idea and I want to contain it in the final version of the game as it encouraged the player to tailor their character to the final Boss.}
 \end{enumerate}
 
@@ -247,31 +249,31 @@ I have kept this questionnaire short, and specific. I believe this will be bette
 \centerline{Jimbo's Response:}
 
 \begin{enumerate}
-	\item{No, there should be set monsters, as when you encounter them, you know if you can take them on or not, and if you can't then you can run away.}
+	\item{No, there should be set monsters, as when you encounter them, you know if you can take them on or not, and if you can't then you can run away. \\}
 	\em{This makes sense as this allows you to predict what you are going up against which allows you to calculate if you can take the battle or not. This will allow consistency for the player.}
 	
-	\item{No, you should be able to carry as much as you like, but there should be a limit, and when you reach that limit you have a debuff, this is when you do less attack damage for example}
+	\item{No, you should be able to carry as much as you like, but there should be a limit, and when you reach that limit you have a de-buff, this is when you do less attack damage for example \\}
 	\em{This is unlike Peters idea, what Jimbo is saying is that you can carry as much as you like, but the character has a certain value which, when exceeded your character has a multiplier to them, maybe making them weaker, or to tier easier in battle. I think I will still choose Peters idea, as this seems to make the most sense and is the closest to reality.}
 	
-	\item{Yes, this should count monsters killed, your characters level, the amount of Gold you have carried etc. But defeating the final Boss should be the only win condition.}
+	\item{Yes, this should count monsters killed, your characters level, the amount of Gold you have carried etc. But defeating the final Boss should be the only win condition. \\}
 	\em{I disagree with this, as if you make a scoreboard, the person with the biggest maze can get a infinitely big score as the maze could be infinitely big.}
 	
-	\item{Yes, I think there should be both}
-	\em{I think Jimbo wants a constant ambient sound in the background, this will add immersion to the game, but I think that making the ambience would be too hard, and therefore I am going to try and find a copyright free ambient track.}
+	\item{Yes, I think there should be both \\}
+	\em{I think Jimbo wants a constant ambient sound in the background, this will add immersion to the game, but I think that making the ambiance would be too hard, and therefore I am going to try and find a copyright free ambient track.}
 	
-	\item{Yes, there should be a jingle for finding treasure, and killing the Boss}
+	\item{Yes, there should be a jingle for finding treasure, and killing the Boss \\}
 	\em{I think this would be a nice idea as well, so I am going to try to contain some small jingles in my game, although I will try to make my own.}
 	
-	\item{Yes, There should be one set in Hell, under water etc, I also like the Pyramid idea a lot.}
+	\item{Yes, There should be one set in Hell, under water etc, I also like the Pyramid idea a lot. \\}
 	\em{It is good that we all like the pyramid idea, and the Hell and Underwater ideas would be interesting to make. Hopefully Jimbo could help me create the backgrounds.}
 	
-	\item{No, only tiles which the player has visited should be visible on the minimap}
+	\item{No, only tiles which the player has visited should be visible on the mini-map \\}
 	\em{I agree with this point as it means that the player has to travel to the surrounding tiles, making the boss room a surprise, and also the trap rooms hidden.}
 	
-	\item{I think it should only be in a seperate form}
+	\item{I think it should only be in a separate form \\}
 	\em{This would be better for the user as it allows the to have it open on a different screen, or to have it constantly open in another window. This keeps the main form from being cluttered and will allow me to fit everything in with room to see the current tile.}
 	
-	\item{There should be battle pets to help you along the way, you should be able to carry gear, rings etc which all buff you, for example make you deal more damage.}
+	\item{There should be battle pets to help you along the way, you should be able to carry gear, rings etc which all buff you, for example make you deal more damage. \\}
 	\em{I never through about pets, this is a good idea but will be hard to code, so I think I will add it in later iterations. Other gear would be fairly easy to add but I also think I will add it in later iterations as it isn't needed.}
 \end{enumerate}
 			
@@ -293,7 +295,7 @@ I have kept this questionnaire short, and specific. I believe this will be bette
 “Each monster, trap room, treasure room etc will all be randomised, although, I do want the randomised values to be in a bracket, so the player wont be facing any super hard or super easy monsters, or finding a treasure room, and getting nothing from it. The monsters will be from a set”
 
 “So What will the actual game look like, once the player has loaded up their game?”
-“I want my game to be in full screen, with buttons in the top right, which open the menu, and in the top left to open the map form. I also want there to be, in the bottom left, a image which displays what the current characters health is. I also want any buffs which he is given from the item which he is holding contained in this picture. To the right of the character window, in the middle of the screen, but still on the bottom of the screen, will be the main bar, this will contain the current options for the player, and also any informations which they are given. To the right of this will be the inventory, which will contain all the items in a list form, and also indicating when the player is overencumbered, which will then cause de buffs to appear in the character window. In the main window, which will take up the rest of the screen will be the background, which is dictated by the tile type, and anything extra which is contained in the tile, like a chest or a monster.”
+“I want my game to be in full screen, with buttons in the top right, which open the menu, and in the top left to open the map form. I also want there to be, in the bottom left, a image which displays what the current characters health is. I also want any buffs which he is given from the item which he is holding contained in this picture. To the right of the character window, in the middle of the screen, but still on the bottom of the screen, will be the main bar, this will contain the current options for the player, and also any information which they are given. To the right of this will be the inventory, which will contain all the items in a list form, and also indicating when the player is over encumbered, which will then cause de buffs to appear in the character window. In the main window, which will take up the rest of the screen will be the background, which is dictated by the tile type, and anything extra which is contained in the tile, like a chest or a monster.”
 
 “What is the recommended audience?”
 “I want my audience to be young adults, so around 17 to 18. This is because the game will be quite challenging and will also take up a lot of time. It could though appeal to a younger audience, as the game will include a setting to make the monsters easier. This is why I have chosen you three as the stakeholders, as you are all inside of my target audience age bracket.”
@@ -303,16 +305,122 @@ I have kept this questionnaire short, and specific. I believe this will be bette
 
 I think my limitations are the graphical side of the project, as this will be incredibly time consuming, and will also mean that I have to learn how to draw pixel art. Another problem will be the audio, as I have no idea where to get the samples, or how to make them, so that will also be a limitation of the project as both of my stakeholders have agreed that there should be music. I think that I will try to get a copyright free ambiance which I can use for the background, and then make my own jingle as a audio cue.
 
-A coding limitation would be the user interface of the solution, with the menus, and the buttons and drawing the character and the inventory windows in the main game screen and achieving a professional look will be a challenge. I think getting the exact look that I want would be a struggle, but I think I could get a GUI which would be useable working.
+A coding limitation would be the user interface of the solution, with the menus, and the buttons and drawing the character and the inventory windows in the main game screen and achieving a professional look will be a challenge. I think getting the exact look that I want would be a struggle, but I think I could get a GUI which would be usable working.
 
 Jimbo gave and idea for magic and battle pets, but at this point in time I don’t think that that would be feasible with the limited time of the project.
 
 	
 	\section{The Proposed Solution}
 
-		\subsection{Requiremets for the Solution}
+		\subsection{Requirements for the Solution}
+	
+\begin{tabularx}{\linewidth}{XXX}
+Requirement No:         & Requirement                                                                                        & Justification                                                                                                                                                                                                                                      \\
+For The Maze:           &                                                                                                    &                                                                                                                                                                                                                                                    \\
+                        & To get the maze to be randomised, without any glitches or dead ends                                & This will allow a interesting game, every game. It allows the player to think about pathways, and to decide what monster to kill if there are multiple blocking their way.  
+                        \\ 
+                        \\                                                                      
+                        & The Maze needs to be as big as the player wants it to                                              & This allows the game to take as much time as the player wants, meaning that                                                                                                                                                                       
+                        \\
+                         \\
+                        & There should be monsters randomly scattered across the map                                         & This will allow the player to move around the map without knowing what is next                                                                                                                                                                    
+                        \\
+		     \\
+                        & Each monster needs to be chosen from the list of monsters                                          & This will allow the player to remember what monsters there, but also for it to be less repetitive                                                                                                                                                  		     \\
+                        \\
+                        & The Boss room should be randomly placed                                                            & This will mean that the user can with the game.                                                                                                                                                                                                   \\ \\
+                        & The maze shouldn't have any tiles which you can't visit                                            & This allows the user to fully explore the grid, and allow them                                                                                                                                                                                     \\
+For the Main Game Form: &                                                                                                    &                                                                                                                                                                                                                                                    \\
+                        & The window needs to take up the whole screen                                                       & This means that the player has a more immersive experience, where everything is more ordered as it branches from this one main window                                                                                                             \\ \\
+                        & There should be a bottom bar, where the options and description is displayed                       & This will allow the player to select their options, it also allows them to get information for the tile which they are in This will allow the player to select their options, it also allows them to get information for the tile which they are in \\\\
+                        & The options button should be functional and opens another form over the main form                & This will allow the user to exit the game, or save at any point                                                                                                                                                                                    \\\\
+                        & There needs to be a menu which displays the current characters stats, like health and carry weight & This will allow the user to judge whether they can take the next fight                                                                                                                                                                             \\\\
+                        & The map needs to be displayed in a different form when the user clicks the map button              & This will allow the user to see the map, allowing them to choose their path accordingly                                                                                                                                                            \\\\
+                        & There should be an inventory window in the bottom right                                            & This will show the player what the have in their inventory, showing what items they have and how many they have of each item                                                                                                                       \\\\
+Monster:                &                                                                                                    &                                                                                                                                                                                                                                                    \\\\
+                        & Each monster needs to be from the class monsters, meaning its attacks and statistics are set.      & This will allow the user to predict if they can take the fight, and know what they are going to fight.                                                                                                                                             \\\\
+                        & The monster needs to be draw to the form                                                           & This will allow the user to see the monster, allowing them to quickly recognize their enemy.                                                                                                                                                       \\\\
+                        & The form’s options needs to change so he player can decide what to do                              & This will show the options to the user, allowing them to select what they want to do                                                                                                                                                               \\\\
+                        & The monster inflicts damage and can take damage                                                    & This allows for combat which means the user can pass through the tile to the next area.                                                                                                                                                            \\\\
+For the Character       &                                                                                                    &                                                                                                                                                                                                                                                    \\\\
+                        & The statistics need to be shown correctly, and the be edited / modified correctly.                 & This will allow the user to see what their health and other statistics are, meaning that they can make educated decisions                                                                                                                          \\\\
+                        & The character needs to have their modifiers displayed to the user                                  & This will allow the user to see what each item does, and the effect it has on them. This will allow them to choose what they want to equip                                                                                                        \\\\
+Items                   &                                                                                                    &                                                                                                                                                                                                                                                    \\\\
+                        & The items need to be correctly rendered in the inventory                                           & This will allow the user to see what they have, and if it is in use or not                                                                                                                                                                         \\\\
+                        & The Items need to stack                                                                            & This will allow the user to store a lot of one item without filling up their inventory.                                                                                                                                                           
+\end{tabularx}
+		
+		
+		
+		
 		
 		\subsection{Hardware and Software Configurations}
-	
-	
+		
+
+\begin{tabularx}{\linewidth}{XX}
+CPU              & You will need a 2 Ghz or faster processor       \\\\
+Memory           & You will need at least 4GB of RAM               \\\\
+Storage          & You will need at least 2GB of storage           \\\\
+Graphics Card    & You will need a DirectX Compatible 9 Card       \\\\
+Operating System & You will need to run a Windows Operating system
+\end{tabularx}
+
+
+
+%%%%%%%%%%% 		END OF ANALYSIS OF THE SOLUTION 		%%%%%%%%%%%
+
+
+\section{Iteration 1}
+
+I started my development by asking my stakeholders what would they want to be implemented first, they said that I should work on generating the maze, and then placing the player inside of that maze, allowing them to move around it. I think i will further this idea by implementing monsters and the different types of rooms. This will lack the ability to allow the player to enter combat with the enemies, and the effects of the rooms would be into play, but the player can freely move around the maze. I think I will leave making the stats for the player until Iteration 2, and from there I can then develop out the combat as well. 
+
+
+\begin{tabularx}{\linewidth}{XX}
+Requirement                                                                                   & Time Cost \\ \\
+To get the maze to be randomised, without any glitches or dead ends                           & 3 Hours   \\ \\
+The Maze needs to be as big as the player wants it to                                         & 1 Hours   \\ \\
+There should be monsters randomly scattered across the map                                    & 2 Hours   \\ \\
+The player should be able to move around the grid one space at a time obeying the grids walls & 2 hours  
+\end{tabularx}
+
+The First 3 requirements are all about the maze generation. This will take just over a week to code, as the total approximate time which it will take is 5.5 Hours, which is 1.5 Hours over my allocated time per week. Regardless of it being over the time I have set aside for my project I should still be able to get this done. 
+
+\includegraphics[width = 0.6\textwidth]{diagram_one}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
