@@ -1,6 +1,9 @@
 \documentclass[12pt]{article}
 \usepackage{graphicx}
 \usepackage{ltablex}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{url}
 
 \title{Dungeon Crawler CO3 Computer Science Programming Project}
 \author{William Riddell}
@@ -372,55 +375,159 @@ Operating System & You will need to run a Windows Operating system
 
 \section{Iteration 1}
 
-I started my development by asking my stakeholders what would they want to be implemented first, they said that I should work on generating the maze, and then placing the player inside of that maze, allowing them to move around it. I think i will further this idea by implementing monsters and the different types of rooms. This will lack the ability to allow the player to enter combat with the enemies, and the effects of the rooms would be into play, but the player can freely move around the maze. I think I will leave making the stats for the player until Iteration 2, and from there I can then develop out the combat as well. 
+\subsection{Introduction to Iteration 1}
 
+In this section of Iteration 1 I will be talking about what I want to achieve.
+
+I started iteration 1 with discussing what I want to include in my project. We leaned towards the generation of the grid and creating the monsters and the rooms which will go on the grid, from this we can then move towards making the user interface to display the grid which we have just made. This will allow us to see if my code is working correctly or not. This is what we have came up with:
 
 \begin{tabularx}{\linewidth}{XX}
-Requirement                                                                                   & Time Cost \\ \\
-To get the maze to be randomised, without any glitches or dead ends                           & 3 Hours   \\ \\
-The Maze needs to be as big as the player wants it to                                         & 1 Hours   \\ \\
-There should be monsters randomly scattered across the map                                    & 2 Hours   \\ \\
-The player should be able to move around the grid one space at a time obeying the grids walls & 2 hours  
+Requirement                                                                                    					         & Time Cost \\ \\
+For the Maze: 																		  & 			  \\ \\
+To get the maze to be randomised, without any glitches or dead ends                          		  & 3 Hours     \\ \\
+The Maze needs to be as big as the player wants it to                                         			  & 1 Hours     \\ \\
+																				  	  &			  \\ \\
+Monster and Rooms:																  	  &			  \\ \\
+There should be monsters randomly scattered across the map                                    	        & 2 Hours     \\ \\
+There should be 2 Shops with in the map												  & 1 Hour   	  \\ \\
+There should be a Boss room inside the map												  & 1 Hour	  \\ \\
+There should be the trap rooms inside the grid											  & 1 Hour 	  \\ \\
+There should be treasure rooms inside the maze											  & 1 Hour 	  \\ \\
+																					  & 			  \\ \\
+For the Character:																	  & 			  \\ \\
+The player should be able to move around the grid one space at a time obeying the grids walls  & 2 hours  	  \\ \\
 \end{tabularx}
 
-The First 3 requirements are all about the maze generation. This will take just over a week to code, as the total approximate time which it will take is 5.5 Hours, which is 1.5 Hours over my allocated time per week. Regardless of it being over the time I have set aside for my project I should still be able to get this done. 
+This is what we have came up with, it is 12 hours work and is achievable. 
 
-\includegraphics[width = 0.6\textwidth]{diagram_one}
+\subsection{Making the maze}
+
+I started iteration 1 with the maze generation. For the maze generation I decided that I will use a recursive backtracking algorithm. This algorithm seemed simple to create and effective, it ended with a simple grid which will allow me to efficiently implement player movement into. This is the algorithm: 
+
+\begin{algorithm}
+\caption{Recursive Backtracking Maze Generation}
+\begin{algorithmic}
+
+\STATE This will create a random maze of $n$ size:
+\STATE Make the initial cell visited
+\WHILE{There are unvisited cells}
+	\IF{$Current-Cell$ has unvisited neighbors}
+		\STATE Choose a random $Unvisited-Neighbor$ of the $Current-Cell$
+		\STATE Push the $Current-Cell$ to a $Stack$
+		\STATE Remove the walls between the cells
+		\STATE Make the chosen cells the $Current-Cell$
+		\STATE Make the $Current-Cell$ visited
+	\ELSE
+		\IF{The $Stack$ has cells in it}
+			\STATE Pop the cell from the $Stack$
+			\STATE Make it the $Current-Cell$
+		\ENDIF
+	\ENDIF
+\ENDWHILE
+
+\end{algorithmic}
+\end{algorithm}
+
+This is a over view of the algorithm, but from this I could create classes and make my procedures and functions. I made 2 classes in my code. The first of which was the Maze class, and the second was a Tile class (Called Cells in the algorithm above). These are the class diagrams for only the maze generation:
+
+\includegraphics[width = 0.6\textwidth]{UML_Maze_Maze-Generation}
+
+In my Maze class I created a private tile array, this will contain all of the tiles which are in this instance of the grid. Having this array will allow me to call back on the tiles I have created. For example when I am populating the grid I can call on each individual tile to see if it is containing anything else. Furthermore having all of the tiles in this array means that when this instance of the maze is removed all of the tiles contained inside its tile array will also be deleted. This is more optimised than if I kept all of the tiles in the Game class. 
+
+In my Maze class I have the Constructor, this constructor uses nested for loops to populate the 2 Dimensional tile array I talked about above. This allows me to better visualise the maze when I am breaking through walls later in the class. From here I also start my maze generation by calling the start generation procedure after I have made all of the tiles I will need. 
+
+The start generation procedure follows the recursive back tracking algorithm above. This moves through the algorithm calling the other functions and procedures as it goes. Within the start generation procedure there is the integer which tracks the amount of tiles which have been visited. This is used in the while loop which is the break condition of the algorithm. I will also create the stack which is used in the algorithm here. I have used a stack as it is suitable for the recursive algorithms, as the first item on the stack must be the last one off. When I start my algorithm I start the current tile in the top left of my grid. This is position (0,0). 
 
 
+This is my Start Generation procedure:
+
+\includegraphics[width = 0.6\textwidth]{Maze_start_generation_procedure}
+
+From here the next function which I use is the Possible Tiles function. This function takes in a tile and returns a random possible tile, if there are no possible tiles then it returns a null value. The way I made this procedure is by working out all of the x and y co-ordonates, then going through each one making sure that it is within the bounds of the array, this includes negative numbers and the max values of the array. After this I store the possible co-ordonates as points and find the corresponding tiles and adding them to a array of "possible tiles to return". Once I have finished adding all of the tiles I will check the size the array, if it is empty then I will return a null value, and if it has tiles then it will return a random tile from the list. The algorithm for this function is:
+
+\begin{algorithm}[H]
+\caption{Possible Tiles}
+\begin{algorithmic}
+
+\STATE int $x_1, x_2, x_3, x_4, y_1, y_2, y_3, y_4 \gets $corresponding x and y to the current tile
+\STATE Point $point_1, point_2, point_3,  point_4 \gets null$
+\STATE $List<Point> valid_points \gets List<Point>(Max \gets 4)$
+
+\FORALL{Possible points}
+	\STATE $point \gets new point(corresponding x, corresponding y)$
+	\STATE $Valid Points.Add(current points)$
+\ENDFOR
+
+\FORALL{Points in Valid Points}
+	\STATE $tile \gets tile array[points.x, points.y]$
+		\IF{$tile.visited = false$}
+		\STATE $Possible Tiles.Add(tile)$
+	\ENDIF
+\ENDFOR
+
+\IF{$Possible Tiles.Count = 0$}
+	\STATE $Return \gets null$
+\ELSE
+	\STATE $Possible Tiles[random]$
+\ENDIF
+
+\end{algorithmic}
+\end{algorithm}
+
+The next procedure which I use is Break\_Wall, this function takes two tiles, these tiles are the current tile and the next tile. This procedure is simple and will check if the two tiles are either on the same x value or on the same y value, from there it will then check for the other axis and remove the two walls for each tile. It has to remove two walls because the tiles have an array of boolean values which tell the program which walls are intact, and to make a path way between the two tiles you need to remove the wall stopping the movement from each tile. For example; if you have current tile to the left of the next tile, and if you remove current tiles right wall you will still have next tiles left wall blocking you. 
+
+That is everything contained in the Maze class which is to do with the Maze generation, the tiles class' UML looks like this:
+
+\includegraphics[width = 0.6\textwidth]{UML_Tile_Maze-Generation} % NEEDS PARAMS X AND Y FOR CONSTRUCTOR
+
+This class doesn't do anything as far as the maze generation is concerned, and inside the constructor it just stores the x and y parameters into the private x and y integers.
 
 
+\subsection{Monsters and Rooms}
+
+Once the maze has been generated I spawn the rooms and the monsters in a random location through out the grid. There must not be any overlap with the rooms or monsters, and they need to be able to have a custom spawn rate. 
+
+\subsubsection{The Rooms:}
+
+I decided that every maze will have to have at least 2 shops inside of it, this is where the user can buy goods with the gold which he collected, and then a random amount of treasure rooms, which is where the user gets free goods and gold, and trap rooms which is where the user gets a certain amount of damage given to them and / or gets gold taken from them. For this I made a static class which is used through out the project which contains multipliers and statistics about the current instance of the game. This is what the class looks like:
+
+\includegraphics[width = 0.6\textwidth]{Settings_All}
+
+In this class you can see that I have added the maze variables to it, these can also be set through the user interface, but if the player doesn't set their own settings then it will use these presets. From here I created an abstract class, this class will be used in the future, but for know it only holds the containing\_tile, this links every room to the tile which it is contained in. Every Tile will also have a $object$ which it holds either a room or a monster in.
+
+I then made 3 more classes which are all rooms, currently they only contain a constructor which takes a tile parameter and sets the containing\_tile to it. Containing\_tile is contained inside the abstract class which is a parent to all of these classes. I have done it this way to allow me to easily see what is contained inside every tile, and to be able to expand it in the later iterations, as if they were only different enumerated values then it would be harder to implement different functions when a player enters the room.
+
+I created a procedure called Generate\_Rooms inside my Maze class, this was called on once the grid generation was completed. The algorithm looks like this:
+
+\begin{algorithm}[H]
+\caption{Generate Rooms}
+\begin{algorithmic}
+
+\STATE $shops \gets 0$
+\WHILE{$shops < 2$}
+	\STATE $Tile\: tile array[random, random]$
+	\IF{$tile.containing == null$}
+		\STATE $tile.Add(new shop)$
+		\STATE $shops \gets shops + 1$
+	\ENDIF
+\ENDWHILE
+
+\end{algorithmic}
+\end{algorithm}
+
+As you can see it has a integer value which is contained outside the while loop, so it will keep looping until 2 shops have been made, this is because the first 2 random tiles may already have a object inside of it. I have added this if statement into every room generation, as with out this the rooms may overwrite existing rooms or monsters, and if it overwrites a tile which contains the Boss in then it would eliminate the win condition from the game meaning it will never end until the user looses. Having this if statement will also allow me to make sure the possibility of the tile being generated and it actually being generated is as close as possible.
+
+\subsubsection{The Monsters:}
+
+I did mostly the same for the monsters, there is a abstract class which is the parent class for every other monster class, but contained in the abstract class are values which I can foresee myself using in the future iterations. An example of this would be the $hp$ and $ap$ for each monster, as well as its weakness and the multiplier which goes a long with that weakness. Furthermore the abstract class contains the same containing\_tile which the abstract room class contains. 
+
+The Boss class and the Monster class are very basic though, as they only currently contain a simple constructor like the room classes, taking in a tile and setting it to the parents containing\_tile value. To finish off the monster generation I matched my Room generation algorithm, but began all the generation (before the room generation as well) which dealt with generating the Boss room. This guarantees that the maze will have a Boss room in it. From there I placed down my basic Monsters through out the grid obeying to the multiplier contained inside the static Settings class.
+
+\subsection{The Character Movement}
 
 
+\section{Used Websites}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\url{https://creately.com/app/?tempID=h165rwt81&login_type=demo#}\newline
+\url{https://en.wikipedia.org/wiki/Maze_generation_algorithm}
 \end{document}
