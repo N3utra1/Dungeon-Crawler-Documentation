@@ -482,7 +482,6 @@ That is everything contained in the Maze class which is to do with the Maze gene
 
 This class doesn't do anything as far as the maze generation is concerned, and inside the constructor it just stores the x and y parameters into the private x and y integers.
 
-
 \subsection{Monsters and Rooms}
 
 Once the maze has been generated I spawn the rooms and the monsters in a random location through out the grid. There must not be any overlap with the rooms or monsters, and they need to be able to have a custom spawn rate. 
@@ -496,6 +495,7 @@ I decided that every maze will have to have at least 2 shops inside of it, this 
 In this class you can see that I have added the maze variables to it, these can also be set through the user interface, but if the player doesn't set their own settings then it will use these presets. From here I created an abstract class, this class will be used in the future, but for know it only holds the containing\_tile, this links every room to the tile which it is contained in. Every Tile will also have a $object$ which it holds either a room or a monster in.
 
 I then made 3 more classes which are all rooms, currently they only contain a constructor which takes a tile parameter and sets the containing\_tile to it. Containing\_tile is contained inside the abstract class which is a parent to all of these classes. I have done it this way to allow me to easily see what is contained inside every tile, and to be able to expand it in the later iterations, as if they were only different enumerated values then it would be harder to implement different functions when a player enters the room.
+
 
 I created a procedure called Generate\_Rooms inside my Maze class, this was called on once the grid generation was completed. The algorithm looks like this:
 
@@ -521,12 +521,62 @@ As you can see it has a integer value which is contained outside the while loop,
 
 I did mostly the same for the monsters, there is a abstract class which is the parent class for every other monster class, but contained in the abstract class are values which I can foresee myself using in the future iterations. An example of this would be the $hp$ and $ap$ for each monster, as well as its weakness and the multiplier which goes a long with that weakness. Furthermore the abstract class contains the same containing\_tile which the abstract room class contains. 
 
+
 The Boss class and the Monster class are very basic though, as they only currently contain a simple constructor like the room classes, taking in a tile and setting it to the parents containing\_tile value. To finish off the monster generation I matched my Room generation algorithm, but began all the generation (before the room generation as well) which dealt with generating the Boss room. This guarantees that the maze will have a Boss room in it. From there I placed down my basic Monsters through out the grid obeying to the multiplier contained inside the static Settings class.
 
 \subsection{The Character Movement}
 
+I need to place the character on the screen, I have done this by giving the character a ''Point.'' A Point is a abstract data type which contains a X and a Y co-ordinate. I have also give the player class a tile which it is currently on. This allows me to directly call on the tile, instead of referencing it through the Settings class. This means that the lines of code will be much smaller and will be easier to read. Lastly I have given the tile class a Boolean value which tells me if it is containing the player inside of it. 
+
+
+\section{Iteration 2}
+
+\subsection{What Will be developed in Iteration 2}
+
+During this iteration I want to be developing the User Interface, this is the forms that the user will be interacting with. While development I wanted to keep the aspect of having a straight forward design centered, this allows for players with no knowledge of the game to be able to pick it up and play it.
+
+To begin this iteration I want there to be a starting form, from here I want there to be 3 different options, option 1 is to start the game, option 2 is to edit the options, and the final option needs to close the game.
+}
+After option 1 is selected there needs to be another form opened, this will be the game form and will be where is game is played. Inside the game form I need 3 boxes, these are the inventory, the player statistics and also the main box where the game can communicate with the player. These boxes will be on the bottom of the form to allow the user to see any monsters which may appear, and also the background. The background will increase the amount of immersion that the player has. 
+
+When option 2 is selected there needs to be another form created. This is the settings form and will allow the editing of the game settings. This can be displayed in text boxes which allows the player to easily edit them. I want this form to be easy to understand and easy to edit, where all of the settings have clear names. I would also want a final option which is to close the game.
+
+
+
+\subsection{Developing the User Interface}
+
+\subsubsection{}
 
 \section{Used Websites}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \url{https://creately.com/app/?tempID=h165rwt81&login_type=demo#}\newline
 \url{https://en.wikipedia.org/wiki/Maze_generation_algorithm}
